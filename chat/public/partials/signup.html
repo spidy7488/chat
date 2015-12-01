@@ -1,0 +1,51 @@
+<md-content layout="column" >
+    <form name="fm"  novalidate>
+      <md-input-container>
+        <label>Email</label>
+        <input  required name="email" ng-model="user.email" type="email">
+        <div class="help-block" ng-messages="fm.email.$error" ng-show="fm.email.$dirty" >
+          <div ng-message="required">This is required.</div>
+          <div ng-message="email">Please enter a valid Email</div>
+        </div>
+      </md-input-container>
+      
+      <md-input-container>
+        <label>Password</label>
+        <input  required name="password" ng-model="user.password" type="password" minlength="6" md-maxlength="10">
+        <div class="help-block" ng-messages="fm.password.$error" >
+          <div ng-message="required">This is required.</div>
+          <div ng-message="minlength"> Password should be more that 4 charecters</div>
+          <div ng-message="md-maxlength"> Password should not be more than 10 charecters</div>
+        </div>
+      </md-input-container> 
+      <md-input-container>
+        <label>Re-enter Password</label>
+        <input  required name="reenterpassword" ng-model="user.reenterpassword" type="password" minlength="6" md-maxlength="10" ng-disabled="fm.password.$error.required ||fm.password.$error.minlength ||fm.password.$error.md-maxlength">
+        <div class="help-block" >
+          <div ng-show="fm.reenterpassword.$error.required">This is required.</div>
+          <div ng-show="user.password==user.reenterpassword">This is required.</div>
+
+        </div>
+      </md-input-container> 
+      <md-input-container>
+        <label>Company Name</label>
+        <input  required name="company" ng-model="user.company" type="text"  md-maxlength="30">
+        <div class="help-block" ng-messages="fm.password.$error" >
+          <div ng-message="required">Company name is required.</div>
+          <div ng-message="md-maxlength"> Company name not be more than 30 charecters</div>
+        </div>
+      </md-input-container> 
+       <md-datepicker ng-model="user.dob" md-placeholder="Date of Birth" name="dob"required></md-datepicker>
+       <div class="validation-messages" ng-messages="fm.dob.$error">
+        <div ng-message="required">Date of Birth is required!</div>
+        
+      </div>
+     <section layout="row" layout-sm="row" layout-align="center center" >
+     
+      <md-button class="md-raised md-primary" ng-disabled="fm.email.$error.required || fm.email.$error.email || fm.password.$error.required || fm.password.$error.minlength||fm.password.$error.md-maxlength" ng-click="login()">Login</md-button>
+      <md-button class="md-raised" ui-sref="signup">Sign Up</md-button>
+     
+      
+    </section>
+    </form>
+  </md-content>
